@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.webmanifest') }}">
+  <link rel="icon" href="{{ url_for('static', filename='jes-ai-icon.svg') }}" type="image/svg+xml">
+  <title>JES AI — Personal Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">J</div><div><b>JES AI</b><small>PERSONAL ASSISTANT</small></div></div>
+      <button class="new-chat" id="newChat">＋ เริ่มแชตใหม่</button>
+      <div class="side-label">เครื่องมือ</div>
+      <button class="tool active" data-prompt="ช่วยตอบคำถามและอธิบายเรื่องที่ฉันสงสัยอย่างละเอียด">✦ สนทนาทั่วไป</button>
+      <button class="tool" data-prompt="ช่วยเขียนเอกสารราชการภาษาไทยอย่างเป็นทางการ">▤ เขียนเอกสาร</button>
+      <button class="tool" data-prompt="ช่วยคิดคอนเทนต์ Facebook พร้อมแคปชันและแฮชแท็ก">▧ สร้างคอนเทนต์</button>
+      <button class="tool" data-prompt="ช่วยวิเคราะห์ข้อมูล สรุปประเด็น และเสนอแนวทาง">⌁ วิเคราะห์ข้อมูล</button>
+      <div class="sidebar-bottom"><span class="status-dot"></span> พร้อมใช้งานเมื่อเชื่อมต่อ API</div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><button id="mobileMenu" class="mobile-menu">☰</button><span>พื้นที่ทำงาน</span><span class="model-tag">Gemini · Free tier*</span></header>
+      <section class="chat-area" id="chatArea">
+        <div class="welcome" id="welcome">
+          <div class="hero-icon">✦</div>
+          <p class="eyebrow">YOUR PERSONAL AI</p>
+          <h1>สวัสดีครับ ผมคือ <span>JES AI</span></h1>
+          <p class="sub">วันนี้อยากให้ผมช่วยเรื่องอะไร?</p>
+          <div class="suggestions">
+            <button class="suggestion" data-text="ช่วยวางแผนการทำงานในวันนี้ให้หน่อย">✧ วางแผนการทำงาน</button>
+            <button class="suggestion" data-text="ช่วยเขียนโพสต์ Facebook ให้น่าสนใจ">✧ เขียนคอนเทนต์</button>
+            <button class="suggestion" data-text="ช่วยอธิบายเรื่องยากให้เข้าใจง่าย">✧ อธิบายความรู้</button>
+            <button class="suggestion" data-text="ช่วยสร้างแผนการจัดการเรียนรู้">✧ งานด้านการศึกษา</button>
+          </div>
+        </div>
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </section>
+      <footer class="composer-wrap">
+        <form id="chatForm" class="composer">
+          <textarea id="messageInput" rows="1" placeholder="พิมพ์ข้อความถึง JES AI..." required></textarea>
+          <button id="sendButton" type="submit" aria-label="ส่งข้อความ">➤</button>
+        </form>
+        <p class="disclaimer">JES AI อาจตอบผิดพลาดได้ โปรดตรวจสอบข้อมูลสำคัญ · *ขึ้นอยู่กับโควตาฟรีของผู้ให้บริการ</p>
+      </footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+  <script>if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("/static/sw.js").catch(() => {}));</script>
+</body>
+</html>
